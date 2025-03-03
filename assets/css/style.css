@@ -15,7 +15,6 @@
   --github: #24292e;
 }
 
-main,
 html {
   position: relative;
   margin: 0;
@@ -96,7 +95,6 @@ a {
   position: fixed;
 }
 
-
 .twitter {
   background-color: var(--twitter);
   padding: 2px;
@@ -139,7 +137,7 @@ a {
   left: 30px;
 }
 
-#topbtn {
+.topbtn {
   display: none;
   position: fixed;
   bottom: 30px;
@@ -160,10 +158,6 @@ a {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-#topbtn:hover {
-  background-color: var(--dusky-blue);
 }
 
 .banner img {
