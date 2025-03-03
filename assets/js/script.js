@@ -107,28 +107,42 @@ function topFunction() {
 
 // Social Media Button
 const circlebg = document.querySelector(".circlebg");
+let open = false;
+let lastScrollTop = 0;
 
 window.addEventListener('scroll', () => {
     circlebg.style.display = window.pageYOffset > 100 ? 'block' : 'none';
+
+    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (Math.abs(currentScrollTop - lastScrollTop) > 10 && open) { // Tambahkan kondisi untuk scroll atas dan bawah
+        closeOuterIcons();
+    }
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
 });
 
 $(document).ready(function() {
-  let open = false;
-  $('.circlebg').on('click', function() {
-    if (!open) {
-      $('.outericons').animate({ opacity: 1 }, 300);
-      $('.icon').fadeOut();
-      $(this).html("<i class='icon bi bi-x-lg' style='display: none'></i>");
-      $('.icon').fadeIn();
-      open = true;
-    }
-    else {
-      $('.outericons').animate({ opacity: 0 }, 300);
-      $('.icon').fadeOut();
-      $(this).html("<i class='icon bi bi-list' style='display: none'></i>");
-      $('.icon').fadeIn();
-      open = false;
-    }
-  });
+    $('.circlebg').on('click', function() {
+        if (!open) {
+            openOuterIcons();
+        } else {
+            closeOuterIcons();
+        }
+    });
 });
+
+function openOuterIcons() {
+    $('.outericons').animate({ opacity: 1 }, 300);
+    $('.icon').fadeOut();
+    $('.circlebg').html("<i class='icon bi bi-x-lg' style='display: none'></i>");
+    $('.icon').fadeIn();
+    open = true;
+}
+
+function closeOuterIcons() {
+    $('.outericons').animate({ opacity: 0 }, 300);
+    $('.icon').fadeOut();
+    $('.circlebg').html("<i class='icon bi bi-list' style='display: none'></i>");
+    $('.icon').fadeIn();
+    open = false;
+}
 // Social Media Button End
